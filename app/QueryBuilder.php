@@ -56,7 +56,7 @@ class QueryBuilder {
         $insert = $this->queryFactory->newInsert();
         $insert
             ->into($table)                   // INTO this table
-            ->cols($data);                   // bind values as "(col) VALUES (:col)"
+            ->cols($data);
 
         $sth = $this->pdo->prepare($insert->getStatement());
 
@@ -73,8 +73,6 @@ class QueryBuilder {
             ->where('id = :id')         // AND WHERE these conditions
             ->bindValue('id', $id);
 
-//        var_dump($update->getStatement());die;
-
         $sth = $this->pdo->prepare($update->getStatement());
 
         $sth->execute($update->getBindValues());
@@ -88,11 +86,10 @@ class QueryBuilder {
         $delete
             ->from($table)                  // FROM this table
             ->where('id = :id')        // AND WHERE these conditions
-            ->bindValue('id', $id);   // bind one value to a placeholder
+            ->bindValue('id', $id);
 
         $sth = $this->pdo->prepare($delete->getStatement());
 
-        // execute with bound values
         $sth->execute($delete->getBindValues());
     }
 }
