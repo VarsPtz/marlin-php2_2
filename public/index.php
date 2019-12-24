@@ -1,33 +1,21 @@
 <?php
 
-require '../vendor/autoload.php';
+require "../vendor/autoload.php";
 
-use Aura\SqlQuery\QueryFactory;
 
-$queryFactory = new QueryFactory('app3');
 
-var_dump($queryFactory);
-
-//$select = $queryFactory->newSelect();
-//$select->cols(['*'])
-//    ->from('posts');
+//use App\QueryBuilder;
 //
-//var_dump($select->getStatement());die;
+//$db = new QueryBuilder();
+//
+//var_dump($db);
 
 
-// a PDO connection
-//$pdo = new PDO(...);
 
-// prepare the statment
-//$sth = $pdo->prepare($select->getStatement());
+if ($_SERVER["REQUEST_URI"] == "/home") {
+    require "../app/controllers/homepage.php";
+}
 
-// bind the values and execute
-//$sth->execute($select->getBindValues());
-
-// get the results back as an associative array
-//$result = $sth->fetch(PDO::FETCH_ASSOC);
-
-//var_dump($select);
-echo 123;
+exit;
 
 ?>
