@@ -4,10 +4,14 @@
 
     require "../vendor/autoload.php";
 
-    d($_SERVER);
+//    d($_SERVER);
 
     $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-        $r->addRoute('GET', '/users', 'get_all_users_handler');
+//        $r->addRoute('GET', '/users', 'get_all_users_handler');
+
+        //controller name -> HomeController,  method -> index
+        $r->addRoute('GET', '/users', ['HomeController', 'index']);
+
         // {id} must be a number (\d+)
         $r->addRoute('GET', '/user/{id:\d+}', 'get_user_handler');
         // The /{title} suffix is optional
@@ -36,21 +40,32 @@
         case FastRoute\Dispatcher::FOUND:
             $handler = $routeInfo[1];
             $vars = $routeInfo[2];
+            $class = $handler[0];
+            $method = $handler[1];
+
+
+//            d($handler);exit;
+
             // ... call $handler with $vars
 
             // call_user_func('name_of_calling_function');
             // or
-             call_user_func($handler);
+            call_user_func($handler, $vars);
             break;
     }
 
-    function name_of_calling_function() {
-        echo 123;
-    }
+//    function name_of_calling_function() {
+//        echo 123;
+//    }
 
     // or
 
-    function get_all_users_handler() {
-        echo 123;
+    function get_all_users_handler($vars) {
+//        echo 123;
+        d($vars);
+    }
+
+    function get_user_handler($vars) {
+        d($vars['id']);
     }
 ?>
