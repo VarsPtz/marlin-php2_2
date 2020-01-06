@@ -19,18 +19,24 @@
   if(true) {
       flash()->message('Hot!');
   }
-  echo flash()->display('error');
+//  echo flash()->display('error');
+  echo flash()->display();
 
+
+
+//
     flash()->message('Error!', 'error');
-//    echo flash()->display();
+    echo flash()->display();
 
     flash()->error('Error-type2!', 'error');
-//    echo flash()->display();
+    echo flash()->display();
 
     flash()->success('Success message!');
-//    echo flash()->display();
+    echo flash()->display();
 
     flash('something', 'error');
+    echo flash()->display();
+
 
   ?>
 </body>
