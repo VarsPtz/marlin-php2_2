@@ -32,19 +32,19 @@
     switch ($routeInfo[0]) {
         case FastRoute\Dispatcher::NOT_FOUND:
             // ... Page not found - 404 Not Found
+            echo "404";
             break;
         case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
             $allowedMethods = $routeInfo[1];
             // ... 405 Method Not Allowed
+            echo "метод не разрешён";
             break;
         case FastRoute\Dispatcher::FOUND:
             $handler = $routeInfo[1];
             $vars = $routeInfo[2];
+//            d($handler);exit;
             $class = $handler[0];
             $method = $handler[1];
-
-
-//            d($handler);exit;
 
             // ... call $handler with $vars
 
@@ -65,6 +65,7 @@
         d($vars);
     }
 
+//    /user/1
     function get_user_handler($vars) {
         d($vars['id']);
     }
