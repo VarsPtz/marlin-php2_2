@@ -16,7 +16,10 @@ class HomeController {
 
     public function index($vars)
     {
-        echo $this->templates->render('homepage', ['name' => 'Jonathan']);
+        $db = new QueryBuilder();
+        $posts = $db->getAll('posts');
+
+        echo $this->templates->render('homepage', ['postsInView' => $posts]);
     }
 
     public function about($vars)
